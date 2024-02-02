@@ -3,7 +3,7 @@ import UIKit
 // MARK: - PROTOCOL:
 
 protocol MainView: AnyObject {
-//    func updateCounterLabel(text: String)
+
 }
 
 // MARK: - MAIN VIEW:
@@ -61,7 +61,7 @@ final class DefaultMainView: UIViewController {
 
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.rightBarButtonItem = UIBarButtonItem(systemItem: .add, primaryAction: UIAction(handler: { [weak self] _ in
-            self?.addUserTapped()
+            self?.presenter.addUserTapped()
         }))
         navigationItem.leftBarButtonItem = UIBarButtonItem(systemItem: .trash)
 
@@ -78,25 +78,9 @@ final class DefaultMainView: UIViewController {
         tableView.register(MainViewCell.self, forCellReuseIdentifier: "MainViewCell")
         tableView.separatorStyle = .none
     }
-
-    // MARK: - HELPERS
-
-    @objc private func addUserTapped() {
-        let addView = AddView()
-        navigationController?.pushViewController(addView, animated: true)
-    }
 }
 
 // MARK: - EXTENSIONS:
-
-extension DefaultMainView: MainView {
-//    func updateCounterLabel(text: String) {
-//
-//    }
-}
-
-// MARK: TABLE VIEW:
-
 extension DefaultMainView: UITableViewDelegate, UITableViewDataSource {
     // MARK: - COUNTS:
 
@@ -108,6 +92,8 @@ extension DefaultMainView: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "MainViewCell", for: indexPath) as? MainViewCell else { return UITableViewCell() }
+        let user = users[indexPath.row]
+        cell.configureEntity(user: user)
         return cell
     }
 
@@ -125,6 +111,8 @@ extension DefaultMainView: UITableViewDelegate, UITableViewDataSource {
             present(alertDelete, animated: true)
         }
     }
+}
 
-    
+extension DefaultMainView: MainView {
+
 }

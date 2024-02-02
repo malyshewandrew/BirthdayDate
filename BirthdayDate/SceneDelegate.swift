@@ -13,9 +13,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     func start() {
         let view = DefaultMainView()
-        let presenter = DefaultMainPresenter(view: view)
-        view.presenter = presenter
         let viewNavigationController = UINavigationController(rootViewController: view)
+        let presenter = DefaultMainPresenter(view: view, navigationController: viewNavigationController)
+        view.presenter = presenter
         window?.rootViewController = viewNavigationController
         window?.makeKeyAndVisible()
     }

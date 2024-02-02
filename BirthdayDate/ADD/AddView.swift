@@ -6,8 +6,9 @@ final class AddView: UIViewController {
     private let nameTextField = UITextField()
     private let surnameTextField = UITextField()
     private let dateDatePicker = UIDatePicker()
-    private var datePickerTextField = UITextField()
+    private var dateTextField = UITextField()
     private var saveButton = UIButton()
+    var presenter: AddPresenter!
     
     // MARK: - LYFECYCLE:
 
@@ -21,7 +22,7 @@ final class AddView: UIViewController {
     // MARK: - ADD SUBVIEWS:
 
     private func addSubviews() {
-        view.addSubviews(nameTextField, surnameTextField, dateDatePicker, datePickerTextField, saveButton)
+        view.addSubviews(nameTextField, surnameTextField, dateDatePicker, dateTextField, saveButton)
     }
     
     // MARK: - CONFIGURE CONSTRAINTS:
@@ -49,7 +50,7 @@ final class AddView: UIViewController {
         dateDatePicker.topAnchor.constraint(equalTo: surnameTextField.bottomAnchor, constant: 20).isActive = true
         dateDatePicker.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
         dateDatePicker.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
-        dateDatePicker.heightAnchor.constraint(equalToConstant: 250).isActive = true
+        dateDatePicker.heightAnchor.constraint(equalToConstant: 200).isActive = true
         
         // MARK: SAVE BUTTON:
         
@@ -87,7 +88,7 @@ final class AddView: UIViewController {
         
         // MARK: DATE PICKER:
         
-        datePickerTextField.inputView = dateDatePicker
+        dateTextField.inputView = dateDatePicker
         dateDatePicker.datePickerMode = .date
         dateDatePicker.maximumDate = Date()
         dateDatePicker.preferredDatePickerStyle = .wheels
@@ -98,7 +99,12 @@ final class AddView: UIViewController {
         saveButton.layer.cornerRadius = 15
         saveButton.layer.masksToBounds = true
         saveButton.setTitle(NSLocalizedString("Save", comment: ""), for: .normal)
+        saveButton.addTarget(self, action: #selector(tapOnSaveButton), for: .touchUpInside)
     }
     
     // MARK: - HELPERS:
+    
+    @objc func tapOnSaveButton() {
+        self.presenter.saveUser()
+    }
 }

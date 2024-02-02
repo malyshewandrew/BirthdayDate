@@ -46,12 +46,18 @@ class MainViewCell: UITableViewCell {
         // MARK: NAME LABEL:
         
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        nameLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 20).isActive = true
+        nameLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 20).isActive = true
         
         // MARK: SURNAME LABEL:
         surnameLabel.translatesAutoresizingMaskIntoConstraints = false
+        surnameLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 20).isActive = true
+        surnameLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 20).isActive = true
         
         // MARK: DATE LABEL:
         dateLabel.translatesAutoresizingMaskIntoConstraints = false
+        dateLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 20).isActive = true
+        dateLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -20).isActive = true
     }
     
     // MARK: - CONFIGURE UI:
@@ -66,5 +72,25 @@ class MainViewCell: UITableViewCell {
         containerView.backgroundColor = .colorBackgroundCell
         containerView.layer.cornerRadius = 15
         containerView.layer.masksToBounds = true
+        
+        // MARK: NAME LABEL:
+        
+        nameLabel.textColor = .colorText
+        nameLabel.text = "Andrew"
+        
+        // MARK: SURNAME LABEL:
+        surnameLabel.textColor = .colorText
+        surnameLabel.text = "Malyshew"
+        
+        // MARK: DATE LABEL:
+        dateLabel.textColor = .colorText
+        dateLabel.text = "20.05.1992"
+    }
+    
+    // MARK: HELPERS:
+    func configureEntity(user: User) {
+        nameLabel.text = user.name
+        surnameLabel.text = user.surname
+        dateLabel.text = user.date
     }
 }

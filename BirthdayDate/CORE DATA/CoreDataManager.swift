@@ -1,31 +1,28 @@
 import CoreData
 import UIKit.UIApplication
 
+// MARK: - CORE DATA ERROR:
 enum CoreDataError: Error {
     case error(String)
 }
 
+// MARK: - CLASS:
 final class CoreDataManager {
     static let instance = CoreDataManager()
     private init() {}
 
     // MARK: - SAVE USER:
 
-    func saveUser(name: String, surname: String, date: Date) -> Result<Void, CoreDataError> {
+    func saveUser(name: String, surname: String, date: String) -> Result<Void, CoreDataError> {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return .failure(.error("AppDelegate not found"))
         }
-
         let managedContext = appDelegate.persistentContainer.viewContext
-
         let entity = NSEntityDescription.entity(forEntityName: "User", in: managedContext)!
-
         let user = NSManagedObject(entity: entity, insertInto: managedContext)
-
         user.setValue(name, forKey: "name")
         user.setValue(surname, forKey: "surname")
         user.setValue(date, forKey: "date")
-
         do {
             try managedContext.save()
             return .success(())
@@ -40,11 +37,8 @@ final class CoreDataManager {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return .failure(.error("AppDelegate not found"))
         }
-
         let managedContext = appDelegate.persistentContainer.viewContext
-
         let fetchRequest = NSFetchRequest<User>(entityName: "User")
-
         do {
             let objects = try managedContext.fetch(fetchRequest)
             return .success(objects)
@@ -59,9 +53,7 @@ final class CoreDataManager {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return .failure(.error("AppDelegate not found"))
         }
-
         let managedContext = appDelegate.persistentContainer.viewContext
-
         do {
             managedContext.delete(user)
             try managedContext.save()
