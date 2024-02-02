@@ -4,6 +4,7 @@ import UIKit
 
 protocol MainPresenter {
     func addUserTapped()
+    func loadUsers()
 }
 
 // MARK: - CLASS:
@@ -20,11 +21,20 @@ final class DefaultMainPresenter: MainPresenter {
     }
 
     func addUserTapped() {
-        let addView = AddView()
-        navigationController.pushViewController(addView, animated: true)
-        
         let view = AddView()
-        let presenter = DefaultAddPresenter(view: view)
+        let presenter = DefaultAddPresenter(view: view, navigationController: navigationController)
         view.presenter = presenter
+        navigationController.pushViewController(view, animated: true)
     }
+    
+    func loadUsers() {
+        let operationResult = CoreDataManager.instance.getUsers()
+        switch operationResult {
+        case .success(let users):
+            print("test")
+        case .failure(let failure):
+            print(failure)
+        }
+    }
+    
 }

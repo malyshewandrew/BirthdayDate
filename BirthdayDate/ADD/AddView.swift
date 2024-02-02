@@ -105,6 +105,6 @@ final class AddView: UIViewController {
     // MARK: - HELPERS:
     
     @objc func tapOnSaveButton() {
-        self.presenter.saveUser()
+        self.presenter.saveUser(name: nameTextField.text ?? "", surname: surnameTextField.text ?? "", date: dateTextField.text ?? "")
     }
 }

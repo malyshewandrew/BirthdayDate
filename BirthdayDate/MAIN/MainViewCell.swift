@@ -76,15 +76,12 @@ class MainViewCell: UITableViewCell {
         // MARK: NAME LABEL:
         
         nameLabel.textColor = .colorText
-        nameLabel.text = "Andrew"
         
         // MARK: SURNAME LABEL:
         surnameLabel.textColor = .colorText
-        surnameLabel.text = "Malyshew"
         
         // MARK: DATE LABEL:
         dateLabel.textColor = .colorText
-        dateLabel.text = "20.05.1992"
     }
     
     // MARK: HELPERS:

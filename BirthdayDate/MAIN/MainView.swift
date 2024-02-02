@@ -29,6 +29,11 @@ final class DefaultMainView: UIViewController {
         configureUI()
         configureTableView()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        presenter.loadUsers()
+    }
 
     // MARK: - ADD SUBVIES:
 
@@ -106,7 +111,7 @@ extension DefaultMainView: UITableViewDelegate, UITableViewDataSource {
             alertDelete.addAction(UIAlertAction(title: NSLocalizedString("Close", comment: ""), style: .default, handler: nil))
             alertDelete.addAction(UIAlertAction(title: NSLocalizedString("Delete ok", comment: ""), style: .destructive, handler: { _ in
                 _ = CoreDataManager.instance.deleteUser(user)
-//                self.viewModel.loadMovies()
+                self.presenter.loadUsers()
             }))
             present(alertDelete, animated: true)
         }
