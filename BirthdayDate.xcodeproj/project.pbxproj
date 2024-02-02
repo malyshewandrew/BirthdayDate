@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FB2E42042B6CF66F00EE76CD /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB2E42032B6CF66F00EE76CD /* CoreDataManager.swift */; };
 		FBA7ED232B6CE96100B64D31 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA7ED222B6CE96100B64D31 /* AppDelegate.swift */; };
 		FBA7ED252B6CE96100B64D31 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA7ED242B6CE96100B64D31 /* SceneDelegate.swift */; };
 		FBA7ED272B6CE96100B64D31 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA7ED262B6CE96100B64D31 /* ViewController.swift */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FB2E42032B6CF66F00EE76CD /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		FBA7ED1F2B6CE96100B64D31 /* BirthdayDate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BirthdayDate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBA7ED222B6CE96100B64D31 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FBA7ED242B6CE96100B64D31 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -58,6 +60,8 @@
 		FBA7ED212B6CE96100B64D31 /* BirthdayDate */ = {
 			isa = PBXGroup;
 			children = (
+				FB2E42032B6CF66F00EE76CD /* CoreDataManager.swift */,
+				FBA7ED2B2B6CE96100B64D31 /* BirthdayDate.xcdatamodeld */,
 				FBA7ED222B6CE96100B64D31 /* AppDelegate.swift */,
 				FBA7ED242B6CE96100B64D31 /* SceneDelegate.swift */,
 				FBA7ED262B6CE96100B64D31 /* ViewController.swift */,
@@ -65,7 +69,6 @@
 				FBA7ED2E2B6CE96200B64D31 /* Assets.xcassets */,
 				FBA7ED302B6CE96200B64D31 /* LaunchScreen.storyboard */,
 				FBA7ED332B6CE96200B64D31 /* Info.plist */,
-				FBA7ED2B2B6CE96100B64D31 /* BirthdayDate.xcdatamodeld */,
 			);
 			path = BirthdayDate;
 			sourceTree = "<group>";
@@ -144,6 +147,7 @@
 				FBA7ED272B6CE96100B64D31 /* ViewController.swift in Sources */,
 				FBA7ED232B6CE96100B64D31 /* AppDelegate.swift in Sources */,
 				FBA7ED2D2B6CE96100B64D31 /* BirthdayDate.xcdatamodeld in Sources */,
+				FB2E42042B6CF66F00EE76CD /* CoreDataManager.swift in Sources */,
 				FBA7ED252B6CE96100B64D31 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
