@@ -11,3 +11,9 @@
 "Delete ok" = "Delete";
 
 "Save" = "Save";
+
+"Success" = "Success";
+"Success message" = "The user has been added";
+
+"Error" = "Error";
+"Error message" = "The user has not been added";
