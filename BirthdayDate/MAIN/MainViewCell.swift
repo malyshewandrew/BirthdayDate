@@ -84,7 +84,7 @@ class MainViewCell: UITableViewCell {
         
         // MARK: DATE LABEL:
         dateLabel.textColor = .colorText
-        dateLabel.font = .systemFont(ofSize: 18, weight: .regular, width: .standard)
+        dateLabel.font = .systemFont(ofSize: 16, weight: .bold, width: .standard)
     }
     
     // MARK: HELPERS:
