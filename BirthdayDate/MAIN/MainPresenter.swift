@@ -12,14 +12,15 @@ protocol MainPresenter {
 final class DefaultMainPresenter: MainPresenter {
     // MARK: PROPERTIES:
 
-    unowned let view: MainView
+    unowned let view: DefaultMainView
     private let navigationController: UINavigationController
 
-    init(view: MainView, navigationController: UINavigationController) {
+    init(view: DefaultMainView, navigationController: UINavigationController) {
         self.view = view
         self.navigationController = navigationController
     }
 
+    // MARK: ADD USER:
     func addUserTapped() {
         let view = AddView()
         let presenter = DefaultAddPresenter(view: view, navigationController: navigationController)
@@ -27,14 +28,14 @@ final class DefaultMainPresenter: MainPresenter {
         navigationController.pushViewController(view, animated: true)
     }
     
+    // MARK: LOAD USERS:
     func loadUsers() {
         let operationResult = CoreDataManager.instance.getUsers()
         switch operationResult {
         case .success(let users):
-            print("test")
+            view.updateData(user: users)
         case .failure(let failure):
             print(failure)
         }
     }
-    
 }

@@ -21,9 +21,10 @@ final class DefaultAddPresenter: AddPresenter {
     func saveUser(name: String, surname: String, date: String) {
         let result = CoreDataManager.instance.saveUser(name: name, surname: surname, date: date)
         switch result {
+            
         case .success:
             print("Saved")
-            let alertSuccess = UIAlertController(title: "Done", message: "The movie has been added", preferredStyle: .alert)
+            let alertSuccess = UIAlertController(title: "Done", message: "The user has been added", preferredStyle: .alert)
             alertSuccess.addAction(UIAlertAction(title: "Ok", style: .default, handler: { _ in
             }))
         case .failure(let failure):

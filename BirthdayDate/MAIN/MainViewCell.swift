@@ -46,17 +46,17 @@ class MainViewCell: UITableViewCell {
         // MARK: NAME LABEL:
         
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        nameLabel.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 20).isActive = true
+        nameLabel.bottomAnchor.constraint(equalTo: containerView.centerYAnchor, constant: -5).isActive = true
         nameLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 20).isActive = true
         
         // MARK: SURNAME LABEL:
         surnameLabel.translatesAutoresizingMaskIntoConstraints = false
-        surnameLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 20).isActive = true
+        surnameLabel.topAnchor.constraint(equalTo: containerView.centerYAnchor, constant: 5).isActive = true
         surnameLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor, constant: 20).isActive = true
         
         // MARK: DATE LABEL:
         dateLabel.translatesAutoresizingMaskIntoConstraints = false
-        dateLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 20).isActive = true
+        dateLabel.centerYAnchor.constraint(equalTo: containerView.centerYAnchor).isActive = true
         dateLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor, constant: -20).isActive = true
     }
     
@@ -76,12 +76,15 @@ class MainViewCell: UITableViewCell {
         // MARK: NAME LABEL:
         
         nameLabel.textColor = .colorText
+        nameLabel.font = .systemFont(ofSize: 16, weight: .bold, width: .standard)
         
         // MARK: SURNAME LABEL:
         surnameLabel.textColor = .colorText
+        surnameLabel.font = .systemFont(ofSize: 16, weight: .bold, width: .standard)
         
         // MARK: DATE LABEL:
         dateLabel.textColor = .colorText
+        dateLabel.font = .systemFont(ofSize: 18, weight: .regular, width: .standard)
     }
     
     // MARK: HELPERS:

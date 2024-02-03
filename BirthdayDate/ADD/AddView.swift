@@ -8,6 +8,7 @@ final class AddView: UIViewController {
     private let dateDatePicker = UIDatePicker()
     private var dateTextField = UITextField()
     private var saveButton = UIButton()
+    private let dateFormatter = DateFormatter()
     var presenter: AddPresenter!
     
     // MARK: - LYFECYCLE:
@@ -92,6 +93,7 @@ final class AddView: UIViewController {
         dateDatePicker.datePickerMode = .date
         dateDatePicker.maximumDate = Date()
         dateDatePicker.preferredDatePickerStyle = .wheels
+        dateDatePicker.addTarget(self, action: #selector(dateDatePickerValueChanged), for: .valueChanged)
         
         // MARK: SAVE BUTTON:
         
@@ -100,6 +102,15 @@ final class AddView: UIViewController {
         saveButton.layer.masksToBounds = true
         saveButton.setTitle(NSLocalizedString("Save", comment: ""), for: .normal)
         saveButton.addTarget(self, action: #selector(tapOnSaveButton), for: .touchUpInside)
+    }
+    
+    @objc private func dateDatePickerValueChanged() {
+        getDateFromPicker()
+    }
+    
+    private func getDateFromPicker() {
+        dateFormatter.dateFormat = "dd.MM.yyyy"
+        dateTextField.text = dateFormatter.string(from: dateDatePicker.date)
     }
     
     // MARK: - HELPERS:

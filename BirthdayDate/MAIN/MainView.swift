@@ -3,7 +3,7 @@ import UIKit
 // MARK: - PROTOCOL:
 
 protocol MainView: AnyObject {
-
+    func updateData(_ user: [User])
 }
 
 // MARK: - MAIN VIEW:
@@ -83,6 +83,9 @@ final class DefaultMainView: UIViewController {
         tableView.register(MainViewCell.self, forCellReuseIdentifier: "MainViewCell")
         tableView.separatorStyle = .none
     }
+    func updateData(user: [User]) {
+        users = user
+    }
 }
 
 // MARK: - EXTENSIONS:
@@ -116,8 +119,4 @@ extension DefaultMainView: UITableViewDelegate, UITableViewDataSource {
             present(alertDelete, animated: true)
         }
     }
-}
-
-extension DefaultMainView: MainView {
-
 }
