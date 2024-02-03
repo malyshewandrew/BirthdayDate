@@ -41,7 +41,7 @@ class MainViewCell: UITableViewCell {
         containerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15).isActive = true
         containerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15).isActive = true
         containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -15).isActive = true
-        containerView.heightAnchor.constraint(equalToConstant: 120).isActive = true
+        containerView.heightAnchor.constraint(equalToConstant: 75).isActive = true
         
         // MARK: NAME LABEL:
         

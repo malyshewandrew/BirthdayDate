@@ -17,3 +17,5 @@
 
 "Error" = "Error";
 "Error message" = "The user has not been added";
+
+"Nil data" = "Fill in the details";
