@@ -32,9 +32,7 @@ final class DefaultAddPresenter: AddPresenter {
             return
         }
         
-        
         let result = CoreDataManager.instance.saveUser(name: name, surname: surname, date: date)
-
 
         switch result {
         case .success:

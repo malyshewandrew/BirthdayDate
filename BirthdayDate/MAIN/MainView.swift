@@ -29,7 +29,7 @@ final class DefaultMainView: UIViewController {
         configureUI()
         configureTableView()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         presenter.loadUsers()
@@ -68,7 +68,9 @@ final class DefaultMainView: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(systemItem: .add, primaryAction: UIAction(handler: { [weak self] _ in
             self?.presenter.addUserTapped()
         }))
-        navigationItem.leftBarButtonItem = UIBarButtonItem(systemItem: .trash)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(systemItem: .trash, primaryAction: UIAction(handler: { [weak self] _ in
+            self?.tableView.setEditing(true, animated: true)
+        }))
 
         // MARK: TABLE VIEW:
 
@@ -83,12 +85,18 @@ final class DefaultMainView: UIViewController {
         tableView.register(MainViewCell.self, forCellReuseIdentifier: "MainViewCell")
         tableView.separatorStyle = .none
     }
+
+    // MARK: - HELPERS:
+
+    // MARK: UPDATE DATA:
+
     func updateData(user: [User]) {
         users = user
     }
 }
 
 // MARK: - EXTENSIONS:
+
 extension DefaultMainView: UITableViewDelegate, UITableViewDataSource {
     // MARK: - COUNTS:
 
