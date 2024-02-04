@@ -1,1 +1,21 @@
 // MARK: - ENGLISH:
+
+"Name" = "Name user";
+"Surname" = "Surname user";
+"Birthday" = "Birthday List";
+"New User" = "New User";
+
+"Delete" = "Delete";
+"Delete user" = "Delete this user?";
+"Close" = "Close";
+"Delete ok" = "Delete";
+
+"Save" = "Save";
+
+"Success" = "Success";
+"Success message" = "The user has been added";
+
+"Error" = "Error";
+"Error message" = "The user has not been added";
+
+"Nil data" = "Fill in the details";
