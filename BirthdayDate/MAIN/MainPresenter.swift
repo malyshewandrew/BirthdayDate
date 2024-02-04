@@ -12,7 +12,7 @@ protocol MainPresenter {
 final class DefaultMainPresenter: MainPresenter {
     // MARK: PROPERTIES:
 
-    unowned let view: DefaultMainView
+    private unowned let view: DefaultMainView
     private let navigationController: UINavigationController
 
     init(view: DefaultMainView, navigationController: UINavigationController) {

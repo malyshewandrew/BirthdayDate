@@ -11,7 +11,7 @@ protocol MainView: AnyObject {
 final class DefaultMainView: UIViewController {
     // MARK: - PROPERTIES:
 
-    var presenter: MainPresenter!
+    var presenter: MainPresenter?
     private let tableView = UITableView()
 
     private var users = [User]() {
@@ -32,7 +32,7 @@ final class DefaultMainView: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        presenter.loadUsers()
+        presenter?.loadUsers()
     }
 
     // MARK: - ADD SUBVIES:
@@ -66,7 +66,7 @@ final class DefaultMainView: UIViewController {
 
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.rightBarButtonItem = UIBarButtonItem(systemItem: .add, primaryAction: UIAction(handler: { [weak self] _ in
-            self?.presenter.addUserTapped()
+            self?.presenter?.addUserTapped()
         }))
         navigationItem.leftBarButtonItem = UIBarButtonItem(systemItem: .trash, primaryAction: UIAction(handler: { [weak self] _ in
             self?.tableView.setEditing(true, animated: true)
@@ -122,7 +122,7 @@ extension DefaultMainView: UITableViewDelegate, UITableViewDataSource {
             alertDelete.addAction(UIAlertAction(title: NSLocalizedString("Close", comment: ""), style: .default, handler: nil))
             alertDelete.addAction(UIAlertAction(title: NSLocalizedString("Delete ok", comment: ""), style: .destructive, handler: { _ in
                 _ = CoreDataManager.instance.deleteUser(user)
-                self.presenter.loadUsers()
+                self.presenter?.loadUsers()
             }))
             present(alertDelete, animated: true)
         }

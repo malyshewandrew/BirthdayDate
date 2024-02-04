@@ -37,10 +37,10 @@ class MainViewCell: UITableViewCell {
         
         // MARK: CONTAINER VIEW:
         containerView.translatesAutoresizingMaskIntoConstraints = false
-        containerView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 15).isActive = true
-        containerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15).isActive = true
-        containerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15).isActive = true
-        containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -15).isActive = true
+        containerView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5).isActive = true
+        containerView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10).isActive = true
+        containerView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10).isActive = true
+        containerView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5).isActive = true
         containerView.heightAnchor.constraint(equalToConstant: 75).isActive = true
         
         // MARK: NAME LABEL:

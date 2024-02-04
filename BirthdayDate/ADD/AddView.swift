@@ -9,7 +9,7 @@ final class AddView: UIViewController {
     private var dateTextField = UITextField()
     private var saveButton = UIButton()
     private let dateFormatter = DateFormatter()
-    var presenter: AddPresenter!
+    var presenter: AddPresenter?
     
     // MARK: - LYFECYCLE:
 
@@ -37,7 +37,7 @@ final class AddView: UIViewController {
         nameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
         nameTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
-        // MARK: SURNAME
+        // MARK: SURNAME:
 
         surnameTextField.translatesAutoresizingMaskIntoConstraints = false
         surnameTextField.topAnchor.constraint(equalTo: nameTextField.bottomAnchor, constant: 20).isActive = true
@@ -104,11 +104,8 @@ final class AddView: UIViewController {
         saveButton.addTarget(self, action: #selector(tapOnSaveButton), for: .touchUpInside)
     }
     
+    // MARK: FUNC FOR VALUE CHANGE FROM DATE PICKER:
     @objc private func dateDatePickerValueChanged() {
-        getDateFromPicker()
-    }
-    
-    private func getDateFromPicker() {
         dateFormatter.dateFormat = "dd.MM.yyyy"
         dateTextField.text = dateFormatter.string(from: dateDatePicker.date)
     }
@@ -116,7 +113,7 @@ final class AddView: UIViewController {
     // MARK: - HELPERS:
     
     @objc func tapOnSaveButton() {
-        self.presenter.saveUser(name: nameTextField.text ?? "", surname: surnameTextField.text ?? "", date: dateTextField.text ?? "") { alertController in
+        self.presenter?.saveUser(name: nameTextField.text ?? "", surname: surnameTextField.text ?? "", date: dateTextField.text ?? "") { alertController in
             self.present(alertController, animated: true)
         }
     }

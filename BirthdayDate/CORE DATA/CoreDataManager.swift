@@ -2,11 +2,13 @@ import CoreData
 import UIKit.UIApplication
 
 // MARK: - CORE DATA ERROR:
+
 enum CoreDataError: Error {
     case error(String)
 }
 
 // MARK: - CLASS:
+
 final class CoreDataManager {
     static let instance = CoreDataManager()
     private init() {}
@@ -30,7 +32,7 @@ final class CoreDataManager {
             return .failure(.error("Could not save. \(error)"))
         }
     }
-    
+
     // MARK: - GET USERS:
 
     func getUsers() -> Result<[User], CoreDataError> {
@@ -46,7 +48,7 @@ final class CoreDataManager {
             return .failure(.error("Could not fetch \(error)"))
         }
     }
-    
+
     // MARK: DELETE USER:
 
     func deleteUser(_ user: User) -> Result<Void, CoreDataError> {
@@ -61,5 +63,13 @@ final class CoreDataManager {
         } catch {
             return .failure(.error("Error deleting user: \(error)"))
         }
+    }
+}
+
+// MARK: - EXTENSION NSCOPYING:
+
+extension CoreDataManager: NSCopying {
+    func copy(with zone: NSZone? = nil) -> Any {
+        return self
     }
 }

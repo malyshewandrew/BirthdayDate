@@ -1,3 +1,4 @@
+import CoreData
 import UIKit
 
 // MARK: - PROTOCOL:
@@ -10,10 +11,10 @@ protocol AddPresenter {
 // MARK: - CLASS:
 
 final class DefaultAddPresenter: AddPresenter {
+    
+    // MARK: PROPERTIES:
     var showAlert: ((UIAlertController) -> Void)?
-    
-    
-    unowned let view: AddView
+    private unowned let view: AddView
     private let navigationController: UINavigationController
     
     init(view: AddView, navigationController: UINavigationController) {
@@ -21,6 +22,7 @@ final class DefaultAddPresenter: AddPresenter {
         self.navigationController = navigationController
     }
     
+    // MARK: SAVE USER:
     func saveUser(name: String, surname: String, date: String, completion: ((UIAlertController) -> Void)?) {
         let alertController: UIAlertController
         guard name != "", surname != "", date != ""
@@ -41,6 +43,17 @@ final class DefaultAddPresenter: AddPresenter {
                 self.navigationController.popViewController(animated: true)
             }))
             completion?(alertController)
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+                return
+            }
+            let context = appDelegate.persistentContainer.viewContext
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
+            do {
+                let count = try context.count(for: fetchRequest)
+                NotificationManager.instance.setNotification(message: "Message", id: count, user: (name, surname, date))
+            } catch let error as NSError {
+                print("Не удалось получить количество объектов: \(error), \(error.userInfo)")
+            }
         case .failure(let failure):
             print(failure)
             alertController = UIAlertController(title: NSLocalizedString("Error", comment: ""), message: NSLocalizedString("Error message", comment: ""), preferredStyle: .alert)
