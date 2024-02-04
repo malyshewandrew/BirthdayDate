@@ -9,7 +9,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         let window = UIWindow(windowScene: windowScene)
         self.window = window
-//        NotificationManager.instance.call(message: "TEST", id: 900)
         start()
     }
 
