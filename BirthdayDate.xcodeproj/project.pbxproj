@@ -17,7 +17,6 @@
 		FB4D34742B6D019A00CCEA30 /* MainViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB4D34732B6D019A00CCEA30 /* MainViewCell.swift */; };
 		FBA7ED232B6CE96100B64D31 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA7ED222B6CE96100B64D31 /* AppDelegate.swift */; };
 		FBA7ED252B6CE96100B64D31 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA7ED242B6CE96100B64D31 /* SceneDelegate.swift */; };
-		FBA7ED272B6CE96100B64D31 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FBA7ED262B6CE96100B64D31 /* ViewController.swift */; };
 		FBA7ED2A2B6CE96100B64D31 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FBA7ED282B6CE96100B64D31 /* Main.storyboard */; };
 		FBA7ED2D2B6CE96100B64D31 /* BirthdayDate.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FBA7ED2B2B6CE96100B64D31 /* BirthdayDate.xcdatamodeld */; };
 		FBA7ED2F2B6CE96200B64D31 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FBA7ED2E2B6CE96200B64D31 /* Assets.xcassets */; };
@@ -40,7 +39,6 @@
 		FBA7ED1F2B6CE96100B64D31 /* BirthdayDate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BirthdayDate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FBA7ED222B6CE96100B64D31 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FBA7ED242B6CE96100B64D31 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		FBA7ED262B6CE96100B64D31 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		FBA7ED292B6CE96100B64D31 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FBA7ED2C2B6CE96100B64D31 /* BirthdayDate.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BirthdayDate.xcdatamodel; sourceTree = "<group>"; };
 		FBA7ED2E2B6CE96200B64D31 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -111,7 +109,6 @@
 				FBA7ED282B6CE96100B64D31 /* Main.storyboard */,
 				FBA7ED222B6CE96100B64D31 /* AppDelegate.swift */,
 				FBA7ED242B6CE96100B64D31 /* SceneDelegate.swift */,
-				FBA7ED262B6CE96100B64D31 /* ViewController.swift */,
 				FB4D34712B6D00CF00CCEA30 /* Extensions.swift */,
 				FBA7ED332B6CE96200B64D31 /* Info.plist */,
 				FB4D34672B6CFA5A00CCEA30 /* MAIN */,
@@ -198,7 +195,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				FB4D34702B6CFAD600CCEA30 /* AddPresenter.swift in Sources */,
-				FBA7ED272B6CE96100B64D31 /* ViewController.swift in Sources */,
 				FB4D34742B6D019A00CCEA30 /* MainViewCell.swift in Sources */,
 				FB4D346A2B6CFAA600CCEA30 /* MainView.swift in Sources */,
 				FBA7ED232B6CE96100B64D31 /* AppDelegate.swift in Sources */,
