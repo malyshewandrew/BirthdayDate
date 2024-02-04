@@ -112,7 +112,7 @@ final class AddView: UIViewController {
     
     // MARK: - HELPERS:
     
-    @objc func tapOnSaveButton() {
+    @objc private func tapOnSaveButton() {
         self.presenter?.saveUser(name: nameTextField.text ?? "", surname: surnameTextField.text ?? "", date: dateTextField.text ?? "") { alertController in
             self.present(alertController, animated: true)
         }
