@@ -8,7 +8,7 @@ final class NotificationManager {
 
     static let instance = NotificationManager()
     private init() {}
-    
+
     // MARK: SET NOTIFICATION:
 
     func setNotification(message: String, id: Int, user: (String, String, String)) {
@@ -20,7 +20,7 @@ final class NotificationManager {
             print("\(#function) Permission granted: \(granted)")
             guard granted else { return }
         }
-        
+
         // MARK: CREATE NOTIFICATION:
 
         guard let date = convertDate(date: user.2) else { return }
@@ -40,7 +40,7 @@ final class NotificationManager {
         let request = UNNotificationRequest(identifier: "\(id)", content: content, trigger: trigger)
         nc.add(request, withCompletionHandler: nil)
     }
-    
+
     // MARK: - CONVERT DATE FROM STRING TO INT:
 
     private func convertDate(date: String) -> (Int, Int, Int)? {
@@ -59,7 +59,7 @@ final class NotificationManager {
     }
 }
 
-// MARK: EXTENSION: NSCOPING:
+// MARK: - EXTENSION: NSCOPING:
 
 extension NotificationManager: NSCopying {
     func copy(with zone: NSZone? = nil) -> Any {
