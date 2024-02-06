@@ -15,7 +15,7 @@ final class NotificationManager {
         // MARK: REQUEST FOR PRIVACY:
 
         let nc = UNUserNotificationCenter.current()
-        let options: UNAuthorizationOptions = [.alert, .sound, .badge]
+        let options: UNAuthorizationOptions = [.alert, .sound]
         nc.requestAuthorization(options: options) { granted, _ in
             print("\(#function) Permission granted: \(granted)")
             guard granted else { return }
@@ -26,15 +26,14 @@ final class NotificationManager {
         guard let date = convertDate(date: user.2) else { return }
         let content = UNMutableNotificationContent()
         content.body = "\(user.0) \(user.1)"
-        content.title = "🎁 Happy Birthday! 🎉"
+        content.title = NSLocalizedString("HB", comment: "")
         content.sound = UNNotificationSound.default
-        content.badge = 1
         var dateComponents = DateComponents()
         dateComponents.year = date.0
         dateComponents.month = date.1
         dateComponents.day = date.2
         dateComponents.hour = 13
-        dateComponents.minute = 22
+        dateComponents.minute = 0
         dateComponents.second = 0
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
         let request = UNNotificationRequest(identifier: "\(id)", content: content, trigger: trigger)

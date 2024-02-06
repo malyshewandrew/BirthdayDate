@@ -132,21 +132,21 @@ final class DefaultMainView: UIViewController {
     }
     
     @objc func termsTapped() {
-        guard let url = URL(string: "https://moviesaver.tilda.ws/termsofuse") else { return }
+        guard let url = URL(string: "https://birthdaydate.tilda.ws/termsofuse") else { return }
         let safariViewController = SFSafariViewController(url: url)
         safariViewController.delegate = self
         present(safariViewController, animated: true)
     }
 
     @objc func webTapped() {
-        guard let url = URL(string: "http://moviesaver.tilda.ws/") else { return }
+        guard let url = URL(string: "https://birthdaydate.tilda.ws") else { return }
         let safariViewController = SFSafariViewController(url: url)
         safariViewController.delegate = self
         present(safariViewController, animated: true)
     }
 
     @objc func privacyTapped() {
-        guard let url = URL(string: "https://moviesaver.tilda.ws/privacysecurity") else { return }
+        guard let url = URL(string: "https://birthdaydate.tilda.ws/privacysecurity") else { return }
         let safariViewController = SFSafariViewController(url: url)
         safariViewController.delegate = self
         present(safariViewController, animated: true)
