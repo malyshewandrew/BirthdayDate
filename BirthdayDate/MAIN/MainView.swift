@@ -1,4 +1,6 @@
 import UIKit
+import WebKit
+import SafariServices
 
 // MARK: - PROTOCOL:
 
@@ -13,6 +15,9 @@ final class DefaultMainView: UIViewController {
 
     var presenter: MainPresenter?
     private let tableView = UITableView()
+    private let termsButton = UIButton()
+    private let webButton = UIButton()
+    private let privacyButton = UIButton()
 
     private var users = [User]() {
         didSet {
@@ -38,7 +43,7 @@ final class DefaultMainView: UIViewController {
     // MARK: - ADD SUBVIES:
 
     private func addSubviews() {
-        view.addSubviews(tableView)
+        view.addSubviews(tableView, termsButton, webButton, privacyButton)
     }
 
     // MARK: - CONFIGURE CONSTRAINTS:
@@ -48,7 +53,28 @@ final class DefaultMainView: UIViewController {
         tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
         tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -50).isActive = true
+
+        // MARK: TERMS OF USE:
+
+        termsButton.translatesAutoresizingMaskIntoConstraints = false
+        termsButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20).isActive = true
+        termsButton.trailingAnchor.constraint(equalTo: webButton.leadingAnchor, constant: -10).isActive = true
+        termsButton.heightAnchor.constraint(equalToConstant: 15).isActive = true
+
+        // MARK: WEB:
+
+        webButton.translatesAutoresizingMaskIntoConstraints = false
+        webButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20).isActive = true
+        webButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        webButton.heightAnchor.constraint(equalToConstant: 15).isActive = true
+
+        // MARK: PRIVACY:
+
+        privacyButton.translatesAutoresizingMaskIntoConstraints = false
+        privacyButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20).isActive = true
+        privacyButton.leadingAnchor.constraint(equalTo: webButton.trailingAnchor, constant: 10).isActive = true
+        privacyButton.heightAnchor.constraint(equalToConstant: 15).isActive = true
     }
 
     // MARK: - CONFIGURE UI:
@@ -68,13 +94,62 @@ final class DefaultMainView: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(systemItem: .add, primaryAction: UIAction(handler: { [weak self] _ in
             self?.presenter?.addUserTapped()
         }))
-        navigationItem.leftBarButtonItem = UIBarButtonItem(systemItem: .trash, primaryAction: UIAction(handler: { [weak self] _ in
-            self?.tableView.setEditing(true, animated: true)
-        }))
 
         // MARK: TABLE VIEW:
 
         tableView.backgroundColor = .colorBackground
+        
+        // MARK: TERMS OF USE:
+
+        let attributedStringTerms = NSAttributedString(string: "TERMS OF USE", attributes: [
+            NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue
+        ])
+        termsButton.setAttributedTitle(attributedStringTerms, for: .normal)
+        termsButton.setTitle("TERMS OF USE", for: .normal)
+        termsButton.setTitleColor(.colorText, for: .normal)
+        termsButton.titleLabel?.font = .systemFont(ofSize: 8, weight: .bold, width: .standard)
+        termsButton.addTarget(self, action: #selector(termsTapped), for: .touchUpInside)
+
+        // MARK: WEB:
+
+        let attributedStringWeb = NSAttributedString(string: "WEB SITE", attributes: [
+            NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue
+        ])
+        webButton.setAttributedTitle(attributedStringWeb, for: .normal)
+        webButton.setTitleColor(.colorText, for: .normal)
+        webButton.titleLabel?.font = .systemFont(ofSize: 8, weight: .bold, width: .standard)
+        webButton.addTarget(self, action: #selector(webTapped), for: .touchUpInside)
+
+        // MARK: PRIVACY:
+
+        let attributedStringPrivacy = NSAttributedString(string: "PRIVACY POLICY", attributes: [
+            NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue
+        ])
+        privacyButton.setAttributedTitle(attributedStringPrivacy, for: .normal)
+        privacyButton.setTitleColor(.colorText, for: .normal)
+        privacyButton.titleLabel?.font = .systemFont(ofSize: 8, weight: .bold, width: .standard)
+        privacyButton.addTarget(self, action: #selector(privacyTapped), for: .touchUpInside)
+    }
+    
+    @objc func termsTapped() {
+        guard let url = URL(string: "https://moviesaver.tilda.ws/termsofuse") else { return }
+        let safariViewController = SFSafariViewController(url: url)
+        safariViewController.delegate = self
+        present(safariViewController, animated: true)
+    }
+
+    @objc func webTapped() {
+        guard let url = URL(string: "http://moviesaver.tilda.ws/") else { return }
+        let safariViewController = SFSafariViewController(url: url)
+        safariViewController.delegate = self
+        present(safariViewController, animated: true)
+    }
+
+    @objc func privacyTapped() {
+        guard let url = URL(string: "https://moviesaver.tilda.ws/privacysecurity") else { return }
+        let safariViewController = SFSafariViewController(url: url)
+        safariViewController.delegate = self
+        present(safariViewController, animated: true)
     }
 
     // MARK: - CONFIGURE TABLE VIEW:
@@ -126,5 +201,13 @@ extension DefaultMainView: UITableViewDelegate, UITableViewDataSource {
             }))
             present(alertDelete, animated: true)
         }
+    }
+}
+
+// MARK: - EXTENSION. SAFARI VIEW CONTROLLER DELEGATE:
+
+extension DefaultMainView: SFSafariViewControllerDelegate {
+    func safariViewControllerWillOpenInBrowser(_ controller: SFSafariViewController) {
+        print("Open in Safari app")
     }
 }

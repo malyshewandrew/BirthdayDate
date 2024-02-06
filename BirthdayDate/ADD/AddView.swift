@@ -1,8 +1,10 @@
 import UIKit
+import Lottie
 
 final class AddView: UIViewController {
     // MARK: - PRIPERTIES:
 
+    private let birthdayLottie = LottieAnimationView(name: "birthdayLottie")
     private let nameTextField = UITextField()
     private let surnameTextField = UITextField()
     private let dateDatePicker = UIDatePicker()
@@ -18,21 +20,30 @@ final class AddView: UIViewController {
         addSubviews()
         configureConstraints()
         configureUI()
+        configureGestures()
     }
     
     // MARK: - ADD SUBVIEWS:
 
     private func addSubviews() {
-        view.addSubviews(nameTextField, surnameTextField, dateDatePicker, dateTextField, saveButton)
+        view.addSubviews(birthdayLottie, nameTextField, surnameTextField, dateDatePicker, dateTextField, saveButton)
     }
     
     // MARK: - CONFIGURE CONSTRAINTS:
 
     private func configureConstraints() {
+        
+        // MARK: BIRTHDAY LOTTIE:
+        birthdayLottie.translatesAutoresizingMaskIntoConstraints = false
+        birthdayLottie.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+        birthdayLottie.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 5).isActive = true
+        birthdayLottie.heightAnchor.constraint(equalToConstant: 100).isActive = true
+        birthdayLottie.widthAnchor.constraint(equalToConstant: 100).isActive = true
+        
         // MARK: NAME:
 
         nameTextField.translatesAutoresizingMaskIntoConstraints = false
-        nameTextField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50).isActive = true
+        nameTextField.topAnchor.constraint(equalTo: birthdayLottie.bottomAnchor, constant: 5).isActive = true
         nameTextField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20).isActive = true
         nameTextField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20).isActive = true
         nameTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
@@ -72,6 +83,11 @@ final class AddView: UIViewController {
         // MARK: TITLE:
 
         title = NSLocalizedString("New User", comment: "")
+        
+        // MARK: BIRTHDAY LOTTIE:
+        birthdayLottie.play()
+        birthdayLottie.loopMode = .loop
+        birthdayLottie.animationSpeed = 0.5
         
         // MARK: NAME TEXT FIELD:
 
@@ -116,5 +132,18 @@ final class AddView: UIViewController {
         self.presenter?.saveUser(name: nameTextField.text ?? "", surname: surnameTextField.text ?? "", date: dateTextField.text ?? "") { alertController in
             self.present(alertController, animated: true)
         }
+    }
+    
+    // MARK: - CONFIGURE GESTURES:
+
+    private func configureGestures() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapGestureDone))
+        view.addGestureRecognizer(tapGesture)
+    }
+
+    // MARK: TAP ON FREE SPACE FOR CLOSE ALL VIEWS ACTION:
+
+    @objc func tapGestureDone() {
+        view.endEditing(true)
     }
 }
