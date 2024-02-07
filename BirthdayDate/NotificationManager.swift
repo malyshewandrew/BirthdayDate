@@ -50,7 +50,6 @@ final class NotificationManager {
             let day = calendar.component(.day, from: date)
             let month = calendar.component(.month, from: date)
             let year = calendar.component(.year, from: date)
-            print(day, month, year)
             return (year, month, day)
         } else {
             return nil
