@@ -29,12 +29,11 @@ final class NotificationManager {
         content.title = NSLocalizedString("HB", comment: "")
         content.sound = UNNotificationSound.default
         var dateComponents = DateComponents()
-        dateComponents.year = date.0
         dateComponents.month = date.1
         dateComponents.day = date.2
         dateComponents.hour = 13
-        dateComponents.minute = 0
-        dateComponents.second = 0
+        dateComponents.minute = 45
+        dateComponents.second = 30
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
         let request = UNNotificationRequest(identifier: "\(id)", content: content, trigger: trigger)
         nc.add(request, withCompletionHandler: nil)
@@ -47,9 +46,9 @@ final class NotificationManager {
         dateFormatter.dateFormat = "dd.MM.yyyy"
         if let date = dateFormatter.date(from: date) {
             let calendar = Calendar.current
-            let day = calendar.component(.day, from: date)
-            let month = calendar.component(.month, from: date)
             let year = calendar.component(.year, from: date)
+            let month = calendar.component(.month, from: date)
+            let day = calendar.component(.day, from: date)
             return (year, month, day)
         } else {
             return nil
