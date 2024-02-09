@@ -84,6 +84,12 @@ final class AddView: UIViewController {
 
         title = NSLocalizedString("New User", comment: "")
         
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "info.circle"), primaryAction: UIAction(handler: { _ in
+            self.presenter?.showInfo(completion: { [weak self] alert in
+                self?.present(alert, animated: true)
+            })
+        }))
+        
         // MARK: BIRTHDAY LOTTIE:
         birthdayLottie.play()
         birthdayLottie.loopMode = .loop

@@ -6,11 +6,20 @@ import UIKit
 protocol AddPresenter {
     func saveUser(name: String, surname: String, date: String, completion: ((UIAlertController) -> Void)?)
     var showAlert: ((UIAlertController) -> Void)? { get set }
+    func showInfo(completion: ((UIAlertController) -> Void)?)
 }
 
 // MARK: - CLASS:
 
 final class DefaultAddPresenter: AddPresenter {
+    func showInfo(completion: ((UIAlertController) -> Void)?) {
+        let alertController: UIAlertController
+        alertController = UIAlertController(title: NSLocalizedString("Notification", comment: ""), message: NSLocalizedString("Notification message", comment: ""), preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: { _ in
+        }))
+        completion?(alertController)
+    }
+    
     
     // MARK: PROPERTIES:
     var showAlert: ((UIAlertController) -> Void)?

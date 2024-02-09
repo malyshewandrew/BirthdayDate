@@ -20,3 +20,6 @@
 
 "Nil data" = "Fill in the details";
 "HB" = "🎁 Happy Birthday! 🎉";
+
+"Notification" = "Notification";
+"Notification message" = "The notification will be delivered on the birthday at 12.00";

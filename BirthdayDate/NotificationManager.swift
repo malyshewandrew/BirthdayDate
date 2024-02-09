@@ -31,9 +31,9 @@ final class NotificationManager {
         var dateComponents = DateComponents()
         dateComponents.month = date.1
         dateComponents.day = date.2
-        dateComponents.hour = 13
-        dateComponents.minute = 45
-        dateComponents.second = 30
+        dateComponents.hour = 12
+        dateComponents.minute = 00
+        dateComponents.second = 00
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
         let request = UNNotificationRequest(identifier: "\(id)", content: content, trigger: trigger)
         nc.add(request, withCompletionHandler: nil)
