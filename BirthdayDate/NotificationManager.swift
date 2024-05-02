@@ -17,7 +17,6 @@ final class NotificationManager {
         let nc = UNUserNotificationCenter.current()
         let options: UNAuthorizationOptions = [.alert, .sound]
         nc.requestAuthorization(options: options) { granted, _ in
-            print("\(#function) Permission granted: \(granted)")
             guard granted else { return }
         }
 
@@ -35,8 +34,9 @@ final class NotificationManager {
         dateComponents.minute = 00
         dateComponents.second = 00
         let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: true)
-        let request = UNNotificationRequest(identifier: "\(id)", content: content, trigger: trigger)
+        let request = UNNotificationRequest(identifier: "\(user.0)\(user.1)\(user.2)", content: content, trigger: trigger)
         nc.add(request, withCompletionHandler: nil)
+        print(request.identifier)
     }
 
     // MARK: - CONVERT DATE FROM STRING TO INT:
@@ -53,6 +53,14 @@ final class NotificationManager {
         } else {
             return nil
         }
+    }
+    
+    // MARK: - DELETE NOTIFICATION:
+    
+    func deleteNotification(user0: String, user1: String, user2: String) {
+        let center = UNUserNotificationCenter.current()
+        center.removePendingNotificationRequests(withIdentifiers: ["\(user0)\(user1)\(user2)"])
+        print("Уведомление \(user0)\(user1)\(user2) удалено")
     }
 }
 

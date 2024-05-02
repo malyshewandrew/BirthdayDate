@@ -52,9 +52,7 @@ final class DefaultAddPresenter: AddPresenter {
                 self.navigationController.popViewController(animated: true)
             }))
             completion?(alertController)
-            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-                return
-            }
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
             let context = appDelegate.persistentContainer.viewContext
             let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "User")
             do {

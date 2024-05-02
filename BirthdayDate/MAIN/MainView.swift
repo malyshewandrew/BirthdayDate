@@ -38,6 +38,7 @@ final class DefaultMainView: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         presenter?.loadUsers()
+        getAllNotifications()
     }
 
     // MARK: - ADD SUBVIES:
@@ -162,6 +163,15 @@ final class DefaultMainView: UIViewController {
     }
 
     // MARK: - HELPERS:
+    
+    // MARK: GET COUNTS NOTIFICATION :
+    
+    private func getAllNotifications() {
+        UNUserNotificationCenter.current().getPendingNotificationRequests { requests in
+            print(requests.count)
+        }
+    }
+
 
     // MARK: UPDATE DATA:
 
@@ -191,16 +201,18 @@ extension DefaultMainView: UITableViewDelegate, UITableViewDataSource {
     // MARK: - DELETE USER:
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        let user = users[indexPath.row]
         if editingStyle == .delete {
             let alertDelete = UIAlertController(title: NSLocalizedString("Delete", comment: ""), message: NSLocalizedString("Delete user", comment: ""), preferredStyle: .alert)
             alertDelete.addAction(UIAlertAction(title: NSLocalizedString("Close", comment: ""), style: .default, handler: nil))
             alertDelete.addAction(UIAlertAction(title: NSLocalizedString("Delete ok", comment: ""), style: .destructive, handler: { _ in
+                let user = self.users[indexPath.row]
+                NotificationManager.instance.deleteNotification(user0: user.name ?? "", user1: user.surname ?? "", user2: user.date ?? "")
                 _ = CoreDataManager.instance.deleteUser(user)
                 self.presenter?.loadUsers()
             }))
             present(alertDelete, animated: true)
         }
+       
     }
 }
 
